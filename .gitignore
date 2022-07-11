@@ -2,3 +2,4 @@
 .npm
 .next
 node_modules
+.swc

@@ -2,23 +2,51 @@ import Styled from 'styled-components';
 
 export const Container = Styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  flex-direction: column;
   width: 100%;
-  height: 100%;
-  ${props => `
-  background-color: ${props.theme.view.background.primary};
-  `}
+  flex: 1;
+  background-color: #F7F7F8;
 `;
 
 export const Center = Styled.div`
-  padding: 24px;
+  margin: 40px;
+`;
+
+export const HeroContainer = Styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  ${props => `
-  border-radius: ${props.theme.borderRadius};
-  background-color: ${props.theme.view.background.secondary};
-  `}
+  margin: 40px;
+`;
+
+export const GridLink = Styled.a`
+  background-color: white;
+  height: 180px;
+  width: auto;
+  box-shadow: 0 3px 6px rgb(11 33 74 / 9%), 0 -2px 2px rgb(11 33 74 / 3%);
+  padding: 24px 24px;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  flex-direction: column;
+  :hover {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+`;
+
+export const GridIcon = Styled.img`
+  width: 60px;
+  height: 60px;
+`;
+
+export const GridTitle = Styled.h5`
+  margin-bottom: 8px;
+`;
+
+export const GridDesription = Styled.p`
+  margin: 0px;
+  margin-bottom: 10px;
 `;

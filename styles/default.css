@@ -1,0 +1,163 @@
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-display: fallback;
+	src: local("Open Sans Regular"), local("OpenSans-Regular"), url("/fonts/opensans.woff2") format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
+}
+
+html {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+#__next {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  font-family: "Open Sans",sans-serif;
+}
+
+p {
+  line-height: 24px;
+  clear: both;
+  font-size: 14px;
+  font-family: "Open Sans",sans-serif;
+  color: #0f161e;
+}
+
+a {
+  text-decoration: none;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0px;
+}
+
+thead {
+  background-color: #d7dade;
+}
+
+th, td {
+  padding: 7px 10px 7px 10px;
+}
+
+tr {
+  color: #0f161e;
+  font-size: 14px;
+}
+
+tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+th {
+  color: #0f161e;
+  text-align: left;
+  font-size: 14px;
+  font-weight: bold;
+  border: 0px !important;
+}
+
+li {
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 36px;
+  line-height: 48px;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 28px;
+  line-height: 38px;
+  font-weight: 600;
+}
+
+aside {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+pre.highlight {
+  background-color: #f5f8fa
+}
+
+h5 {
+  font-size: 22px;
+  line-height: 22px;
+}
+
+blockquote {
+  font-style: italic;
+  padding: 0px 20px;
+  margin: 0 0 20px;
+  border-left: 5px solid #000000;
+}
+
+blockquote.info {
+}
+
+blockquote.info > p:first-child {
+  color: #116ED0;
+  font-weight: 700;
+}
+
+blockquote.info > p:first-child::before {
+  font-family: "Font Awesome 6 Free";
+  content: "\f05a  ";
+}
+
+code.plaintext {
+  background-color: #f5f8fa !important;
+  color: #0c5176 !important;
+  padding: 2px 4px;
+}
+
+.MuiTreeItem-label {
+  font-family: "Open Sans",sans-serif !important;
+  font-size: 12px !important;
+  color: rgba(255, 165, 0, 0.8);
+  font-weight: 400 !important;
+  padding: 10px 0px;
+}
+
+.MuiTreeItem-content.Mui-selected > .MuiTreeItem-label {
+  font-weight: 600 !important;
+}
+
+.MuiTreeItem-content:hover {
+  background-color: rgba(255, 165, 0, 0.1) !important;
+  opacity: 0.8;
+}
+
+.MuiTreeItem-content.Mui-selected {
+  background-color: rgba(255, 165, 0, 0.1) !important;
+}
+
