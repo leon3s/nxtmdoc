@@ -15,17 +15,11 @@ const SearchBar = ({}: PropsSearchBar) => {
     <>
       <Style.ContainerSearchBar onSubmit={(e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        router.push({
-          pathname: '/search',
-          query: {
-            q: searchVal,
-          }
-        }, `/search/?q=${searchVal}`, {
-          shallow: false,
-        });
+        router.push(`/search/?q=${searchVal}`);
       }}>
         <TextField
           id="search"
+          onFocus={(e) => setSearchVal(e.target.value)}
           onChange={(e) => setSearchVal(e.target.value)}
           type="search"
           variant="outlined"

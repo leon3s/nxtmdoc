@@ -50,7 +50,7 @@ app.prepare().then(() => {
   const server = express();
 
   server.get("/search", (req, res) => {
-    return app.render(req, res, "/search");
+    return app.render(req, res, "/s");
   });
 
   server.get("/", (req, res) => {
