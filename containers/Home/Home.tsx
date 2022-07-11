@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import { NextRouter, withRouter } from 'next/router';
 
 import * as Style from './style';
-// import TextField from '@mui/material/TextField';
+import SearchBar from '~/components/SearchBar';
 
 export type HomeContainerProps = {
   home_page_blocks: {
@@ -20,26 +20,12 @@ export type HomeContainerProps = {
 class HomeContainer extends
   React.PureComponent<HomeContainerProps> {
 
-  onClick = () => {
-  };
-
   render() {
-    const {
-    } = this.props;
     return (
       <Style.Container>
         <Style.HeroContainer>
           <h2>What can we help you find?</h2>
-          {/* <TextField
-            id="search"
-            variant="outlined"
-            style={{
-              maxWidth: 500,
-              width: '100%',
-              backgroundColor: 'white',
-            }}
-            placeholder="Search for guides, terms, commands, and more..."
-          /> */}
+          <SearchBar />
         </Style.HeroContainer>
         <Style.Center>
           <Box sx={{ flexGrow: 1 }}>

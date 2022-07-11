@@ -49,11 +49,22 @@ function get_doc_file(fp) {
 app.prepare().then(() => {
   const server = express();
 
+  server.get("/search", (req, res) => {
+    return app.render(req, res, "/search");
+  });
+
   server.get("/", (req, res) => {
     return app.render(req, res, "/", {
       header_links: config.header_links,
       home_page_blocks: config.home_page_blocks,
     })
+  });
+
+  server.get("/api/config", (req, res) => {
+    res.json({
+      header_links: config.header_links,
+      home_page_blocks: config.home_page_blocks,
+    });
   });
 
   Object.keys(config.routes).forEach((route_path) => {

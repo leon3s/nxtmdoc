@@ -2,6 +2,7 @@ import React from 'react';
 import Separator from '../Separator';
 import type {DocTreeNode} from 'types/doc_tree.h';
 import { useRouter } from 'next/router'
+import Script from 'next/script'
 
 import * as Style from './style';
 import Link from 'next/link';
@@ -13,6 +14,7 @@ export type PropsHeader = {
 const Header = (props: PropsHeader) => {
   const router = useRouter();
   return (
+    <>
     <Style.ShadowContainer>
       <Style.ContainerHeader>
         <Style.ContentHeader>
@@ -29,9 +31,9 @@ const Header = (props: PropsHeader) => {
             <Style.HeaderNav>
               {props.header_links?.map((header_link) => (
                 <Style.HeaderLink
-                  key={header_link.url}
-                  selected={router.asPath.startsWith(header_link.url)}
-                  href={header_link.url}
+                key={header_link.url}
+                selected={router.asPath.startsWith(header_link.url)}
+                href={header_link.url}
                 >
                   {header_link.title}
                 </Style.HeaderLink>
@@ -45,6 +47,7 @@ const Header = (props: PropsHeader) => {
         <Separator />
       </Style.ContainerHeader>
     </Style.ShadowContainer>
+    </>
   )
 };
 

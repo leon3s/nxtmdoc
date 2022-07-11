@@ -1,8 +1,10 @@
+import axios from 'axios';
 import React from 'react';
 import Header from '~/components/Header';
 import HomeContainer from '~/containers/Home';
 
 import type { GetServerSidePropsResult } from 'next';
+
 type IndexPageProps = {
   home_page_blocks: {
     title: string,
@@ -12,13 +14,19 @@ type IndexPageProps = {
   }[]
 };
 
-export const getServerSideProps = async (ctx: any): Promise<GetServerSidePropsResult<any>> => {
-  return {
-    props: {
-      header_links: ctx.query.header_links || [],
-      home_page_blocks: ctx.query.home_page_blocks,
-    },
-  };
+export const getServerSideProps = async ({}): Promise<GetServerSidePropsResult<any>> => {
+  try {
+    const res = await axios.get("http://localhost:3001/api/config");
+    return {
+      props: res.data,
+    }
+  } catch (e: any) {
+    return {
+      props: {
+        statusCode: e?.response?.status || 404,
+      },
+    }
+  }
 }
 
 function IndexPage(props: IndexPageProps) {
@@ -37,4 +45,3 @@ IndexPage.getLayout = (Page: typeof IndexPage, props: any) => {
 }
 
 export default IndexPage;
-
