@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import { TextField } from '@mui/material';
 
 import * as Style from './style';
-import TextField from '@mui/material/TextField';
 
 export type PropsSearchBar = {
 };
@@ -29,10 +29,10 @@ const SearchBar = ({}: PropsSearchBar) => {
             backgroundColor: 'white',
           }}
           placeholder="Search for guides, terms, commands, and more..."
-          />
+        />
       </Style.ContainerSearchBar>
     </>
   );
-}
+};
 
 export default SearchBar;

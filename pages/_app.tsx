@@ -40,8 +40,8 @@ class MyApp extends App<AppPropsWithLayout> {
             <link rel="shortcut icon" href="/favicon.png" type="image/png" />
             <meta name="viewport" content="width=device-width, user-scalable=no" />
           </Head>
-        <Script async src="https://cse.google.com/cse.js?cx=5c4a0cc2eff9d52d2" />
-        {getLayout(Component, pageProps)}
+          <Script async src="https://cse.google.com/cse.js?cx=5c4a0cc2eff9d52d2" />
+          {getLayout(Component, pageProps)}
         </React.Fragment>
       </ThemeProvider>
     );

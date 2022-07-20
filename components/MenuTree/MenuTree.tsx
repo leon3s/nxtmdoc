@@ -1,10 +1,9 @@
 import React from 'react';
-import TreeItem from '@mui/lab/TreeItem';
-import TreeView from '@mui/lab/TreeView';
-import type { DocTreeNode } from 'types/doc_tree.h';
+import { TreeItem, TreeView } from '@mui/lab';
+import { NextRouter, useRouter } from 'next/router';
 
 import * as Style from './style';
-import { NextRouter, useRouter } from 'next/router';
+import type { DocTreeNode } from 'types/doc_tree.h';
 
 export type PropsMenuTree = {
   tree: DocTreeNode,
@@ -12,7 +11,7 @@ export type PropsMenuTree = {
 };
 
 const renderTree = (tree: DocTreeNode, router: NextRouter) => {
-  if (!tree.children) return null;
+  if (!tree?.children) return null;
   return tree.children.map((node, i) => (
     <TreeItem
       key={node.name + i}
@@ -21,19 +20,14 @@ const renderTree = (tree: DocTreeNode, router: NextRouter) => {
       style={{
         borderLeft: router.asPath === node.url ? '4px solid orange' : '4px solid transparent',
       }}
-      onClick={() => node.url ? router.push({
-        pathname: '/markdown',
-        query: {
-          route_path: node.url,
-        }
-      }, node.url) : undefined}
+      onClick={() => node.url && node.url !== router.asPath ? router.push(node.url) : undefined}
     >
       {node?.children?.length ?
         renderTree(node, router)
-      : null}
+        : null}
     </TreeItem>
   ));
-}
+};
 
 const MenuTree = (props: PropsMenuTree) => {
   const router = useRouter();
@@ -64,7 +58,7 @@ const MenuTree = (props: PropsMenuTree) => {
         </TreeView>
       </Style.ContainerMenuTree>
     </Style.ShadowContainer>
-  )
+  );
 };
 
 export default MenuTree;

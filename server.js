@@ -1,19 +1,18 @@
 const path = require('path');
 const next = require('next');
 const express = require('express');
+const next_conf = require('./next.config');
 const { readFileSync, statSync, readdirSync } = require('fs');
 
 const port = +(process.env.PORT || 3001);
-const dev = process.env.NODE_ENV !== 'production';
+const dev = process.env.NODE_ENV === 'development';
 
-const app = next({ dev });
+const app = next({ dev, dir: __dirname, conf: next_conf });
 const handle = app.getRequestHandler();
 
-const doc_path = process.argv[2] || path.resolve(path.join(__dirname, "./test_doc/doc"));
+const doc_path = process.argv[2] || path.resolve("./test_doc/doc");
 
-const config = require(path.join(doc_path, "config.js"));
-
-function new_doc_node(p) {
+function new_doc_node(p, is_dir) {
   const name = path.basename(p);
   const dir_name = path.dirname(p).replace(doc_path, '');
   let url = p.replace(doc_path, '');
@@ -23,27 +22,51 @@ function new_doc_node(p) {
   return {
     name,
     url,
+    is_dir,
     dir_name,
+    children: [],
   }
 }
 
-function get_doc_file(fp) {
-  const file_path = path.resolve(path.join(doc_path, fp));
+function get_doc_content(fp) {
+  const file_path = fp;
 
   if (!file_path.startsWith(doc_path)) {
     return null;
   }
 
   try {
-    const node = new_doc_node(file_path);
-    const content = readFileSync(file_path, 'utf8');
-    return {
-      node,
-      content,
-    }
+    return readFileSync(file_path, 'utf8');
   } catch (e) {
     return null
   }
+}
+
+function generate_dir_tree(curr_path) {
+  const stat = statSync(curr_path);
+  const is_dir = stat.isDirectory();
+  const node = new_doc_node(curr_path, is_dir);
+  if (is_dir) {
+    const files = readdirSync(curr_path);
+    for (const file of files) {
+      const file_path = path.join(curr_path, file);
+      const name = path.basename(file_path);
+      const start = name.charAt(0);
+      if (name === "README.md") continue;
+      if (start === '.' || start === '_') continue;
+      node.children.push(generate_dir_tree(file_path));
+    }
+  }
+  return node;
+}
+
+const tree = generate_dir_tree(doc_path);
+
+function for_each_node(node, fn) {
+  fn(node);
+  node.children.forEach((node) => {
+    for_each_node(node, fn);
+  });
 }
 
 app.prepare().then(() => {
@@ -55,38 +78,37 @@ app.prepare().then(() => {
 
   server.get("/", (req, res) => {
     return app.render(req, res, "/", {
-      header_links: config.header_links,
-      home_page_blocks: config.home_page_blocks,
+      header_links: [],
+      home_page_blocks: [],
     })
   });
 
   server.get("/api/config", (req, res) => {
     res.json({
-      header_links: config.header_links,
-      home_page_blocks: config.home_page_blocks,
+      header_links: [],
+      home_page_blocks: [],
     });
   });
 
-  Object.keys(config.routes).forEach((route_path) => {
-    const route_config = config.routes[route_path];
-    server.get("/api" + route_path, (req, res) => {
-      const doc_file = get_doc_file(route_config.match);
-      if (!doc_file) {
-        return res.status(404).json({
-          message: "not found",
-        });
-      }
-      res.json({
-        node: doc_file.node,
-        content: doc_file.content,
-        menu_tree: route_config.tree,
-        header_links: config.header_links,
-      });
-    });
-
-    server.get(route_path, (req, res) => {
-      return app.render(req, res, "/markdown", {
-        route_path,
+  tree.children.forEach((node) => {
+    for_each_node(node, (c_node) => {
+      server.get(c_node.url, (req, res) => {
+        let file_path = path.join(doc_path, c_node.url);
+        if (c_node.is_dir) {
+          file_path = path.join(file_path, "README.md");
+        }
+        const doc_content = get_doc_content(file_path);
+        if (!doc_content) {
+          return res.status(404).json({
+            message: "not found",
+          });
+        }
+        const props = {
+          tree: node,
+          node: c_node,
+          content: doc_content,
+        };
+        return app.render(req, res, "/markdown", props);
       });
     });
   });
@@ -99,4 +121,6 @@ app.prepare().then(() => {
     if (err) throw err;
     console.log(`> Ready on http://localhost:${port}`);
   });
+}).catch((err) => {
+  console.error(err);
 });

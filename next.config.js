@@ -1,10 +1,9 @@
 module.exports = {
   swc: true,
+  swcMinify: false,
   reactStrictMode: true,
   compiler: {
     styledComponents: true,
   },
-  env: {
-    API_URL: process.env.API_URL,
-  },
+  env: {},
 }

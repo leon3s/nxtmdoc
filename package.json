@@ -1,14 +1,29 @@
 {
-  "name": "next-starter",
+  "name": "nxtmdoc",
   "private": false,
-  "main": "./server.js",
+  "bin": {
+    "nxtmdoc": "./server.js"
+  },
   "scripts": {
-    "dev": "node ./server.js",
+    "dev": "NODE_ENV=development node ./server.js",
     "lint": "next lint",
-    "build": "next build",
+    "build": "NODE_ENV=production next build",
+    "pkg": "pkg -t node16-linux-x64 --compress GZip .",
     "hygen": "hygen",
     "test": "exit 0",
     "start": "node ./server.js"
+  },
+  "pkg": {
+    "assets": [
+      ".next/**/*"
+    ],
+    "scripts": [
+      ".next/dist/**/*.js"
+    ],
+    "targets": [
+      "node16-linux-x64"
+    ],
+    "outputPath": "dist"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
@@ -17,9 +32,9 @@
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mui/base": "^5.0.0-alpha.89",
     "@mui/lab": "^5.0.0-alpha.89",
     "@mui/material": "^5.8.7",
-    "axios": "^0.27.2",
     "express": "^4.18.1",
     "next": "^12.2.0",
     "react": "^18.2.0",
@@ -28,9 +43,8 @@
     "react-syntax-highlighter": "^15.5.0",
     "rehype-raw": "^6.1.1",
     "remark-gfm": "^3.0.1",
-    "socket.io-client": "^4.5.1",
     "styled-components": "^5.3.5",
-    "widdershins": "^3.6.7"
+    "yaml": "^2.1.1"
   },
   "devDependencies": {
     "@types/node": "^18.0.3",
@@ -41,6 +55,7 @@
     "eslint": "^8.19.0",
     "eslint-config-next": "^12.2.0",
     "hygen": "^6.2.7",
+    "pkg": "^5.8.0",
     "typescript": "^4.7.4"
   }
 }
