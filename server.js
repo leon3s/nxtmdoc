@@ -10,12 +10,13 @@ const dev = process.env.NODE_ENV === 'development';
 const app = next({ dev, dir: __dirname, conf: next_conf });
 const handle = app.getRequestHandler();
 
-const doc_path = process.argv[2] || path.resolve("./test_doc/doc");
+const doc_path = process.argv[2] ? path.resolve(process.argv[2]) : path.resolve("./test_doc/doc");
 
 function new_doc_node(p, is_dir) {
-  const name = path.basename(p);
+  const name = path.basename(p).replace(".md", '').replace(/-/g, ' ');
   const dir_name = path.dirname(p).replace(doc_path, '');
   let url = p.replace(doc_path, '');
+  url = url.replace('.md', '');
   if (p === doc_path) {
     url = '/';
   }
@@ -60,14 +61,21 @@ function generate_dir_tree(curr_path) {
   return node;
 }
 
-const tree = generate_dir_tree(doc_path);
-
-function for_each_node(node, fn) {
-  fn(node);
-  node.children.forEach((node) => {
-    for_each_node(node, fn);
-  });
+function stat_path(file_path) {
+  try {
+    const stats = statSync(file_path);
+    if (stats.isDirectory()) {
+      return stat_path(path.join(file_path, "README.md"));
+    }
+    return file_path;
+  } catch (e) {
+    if (path.extname(file_path) === ".md") {
+      throw e;
+    }
+    return stat_path(file_path + ".md");
+  }
 }
+
 
 app.prepare().then(() => {
   const server = express();
@@ -90,27 +98,31 @@ app.prepare().then(() => {
     });
   });
 
-  tree.children.forEach((node) => {
-    for_each_node(node, (c_node) => {
-      server.get(c_node.url, (req, res) => {
-        let file_path = path.join(doc_path, c_node.url);
-        if (c_node.is_dir) {
-          file_path = path.join(file_path, "README.md");
-        }
-        const doc_content = get_doc_content(file_path);
-        if (!doc_content) {
-          return res.status(404).json({
-            message: "not found",
-          });
-        }
-        const props = {
-          tree: node,
-          node: c_node,
-          content: doc_content,
-        };
-        return app.render(req, res, "/markdown", props);
-      });
-    });
+
+  server.use((req, res, next) => {
+
+    if (req.method !== "GET") return next();
+
+    const dir_path = path.join(doc_path, req.path.split("/")[0]);
+    let node_path = path.join(doc_path, req.path);
+
+    if (!node_path.startsWith(doc_path)) return next();
+    if (!dir_path.startsWith(doc_path)) return next();
+
+    try {
+      node_path = stat_path(node_path);
+      const doc_node = new_doc_node(node_path, false);
+      const tree = generate_dir_tree(dir_path);
+      const doc_content = get_doc_content(node_path);
+      const props = {
+        tree: tree,
+        node: doc_node,
+        content: doc_content,
+      };
+      app.render(req, res, "/markdown", props);
+    } catch (_e) {
+      next();
+    }
   });
 
   server.all("*", (req, res) => {

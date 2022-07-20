@@ -5,7 +5,7 @@ export const ShadowContainer = Styled.div`
   max-height: 50px;
   width: 100%;
   position: relative;
-  background-color: orange;
+  background-color: #ffa500;
 `;
 
 export const ContainerHeader = Styled.div`

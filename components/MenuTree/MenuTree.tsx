@@ -32,7 +32,6 @@ const renderTree = (tree: DocTreeNode, router: NextRouter) => {
 const MenuTree = (props: PropsMenuTree) => {
   const router = useRouter();
   const [_, ...routes] = router.asPath.split("/");
-  console.log({routes});
   const expanded: string[] = [];
   while (routes.length) {
     expanded.push(`/${routes.join("/")}`);

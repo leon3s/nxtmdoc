@@ -7,6 +7,15 @@
 	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
 }
 
+@font-face {
+	font-family: 'Consolas';
+	font-style: normal;
+	font-weight: 400;
+	font-display: fallback;
+	src: local("Consolas"), local("Consolas"), url("/fonts/Consolas.ttf") format("ttf");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
+}
+
 html {
   display: flex;
   flex: 1;
@@ -36,7 +45,15 @@ body {
 }
 
 * {
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans", sans-serif;
+}
+
+code {
+  font-family: "Consolas", sans-serif;
+}
+
+code > strong {
+  font-family: "Consolas", sans-serif;
 }
 
 p {
@@ -122,14 +139,19 @@ blockquote {
 }
 
 blockquote.info {
+  border-left: 5px solid #116ED0;
 }
 
-blockquote.info > p:first-child {
+blockquote.info > :first-child {
   color: #116ED0;
   font-weight: 700;
 }
 
-blockquote.info > p:first-child::before {
+blockquote.info > p {
+  color: #116ED0;
+}
+
+blockquote.info > :first-child::before {
   font-family: "Font Awesome 6 Free";
   content: "\f05a  ";
 }
@@ -161,3 +183,21 @@ code.plaintext {
   background-color: rgba(255, 165, 0, 0.1) !important;
 }
 
+
+.nxtmdoc-delete {
+  width: 0px !important;
+  height: 0px !important;
+  display: none;
+}
+
+a {
+  color: rgba(255, 165, 0, 0.6);
+}
+
+a:hover {
+  color: rgba(255, 165, 0, 0.4);
+}
+
+a:visited {
+  color: rgba(255, 165, 0, 1);
+}

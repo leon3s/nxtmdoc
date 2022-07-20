@@ -23,6 +23,7 @@ class ContainerMarkdown extends
   React.PureComponent<PropsContainerMarkdown> {
 
   render = () => {
+    const {router} = this.props;
     return (
       <>
         <Style.MainContainer>
@@ -35,8 +36,53 @@ class ContainerMarkdown extends
               rehypePlugins={[rehypeRaw]}
               remarkPlugins={[remarkGfm]}
               components={{
+                a({node, href, children, ...props}) {
+                  let injected_href = href;
+                  if (href?.startsWith("./")) {
+                    injected_href = router.asPath + href.replace("./", "/");
+                  }
+                  return (
+                    <a {...props} href={injected_href}>
+                      {children}
+                    </a>
+                  );
+                },
                 code({node, inline, className, children, ...props}) {
                   const match = /language-(\w+)/.exec(className || '')
+                  if (match && match[1] === "sh") {
+                    const lines = String(children).trim().split("\n");
+                    const html = lines.map((line) => {
+                      const [cmd, ...args] = line.split(" ");
+                      return (
+                        <>
+                          <strong style={{
+                            lineHeight: "1.2em",
+                          }}>
+                            {cmd}&nbsp;
+                          </strong>
+                          {args.join(" ")}
+                          <br />
+                        </>
+                      )
+                    });
+                    return (
+                      <SyntaxHighlighter
+                      customStyle={{
+                        backgroundColor: '#f5f8fa',
+                      }}
+                      renderer={() => <code>{html}</code>}
+                      children={String(children).replace(/\n$/, '')}
+                      language={match[1]}
+                      PreTag="pre"
+                      style={prims.vs}
+                    />
+                      // <code className={className} {...props}>
+                      //   <pre>
+                      //     {html}
+                      //   </pre>
+                      // </code>
+                    )
+                  }
                   return !inline && match ? (
                     <SyntaxHighlighter
                       customStyle={{

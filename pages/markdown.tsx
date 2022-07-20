@@ -15,7 +15,6 @@ type MarkdownPageProps = {
 
 export const getServerSideProps = 
 async (ctx: any): Promise<GetServerSidePropsResult<any>> => {
-  console.log(ctx);
   return {
     props: ctx.query,
   };
