@@ -20,7 +20,7 @@ const Header = (props: PropsHeader) => {
                 <a
                   href="/"
                 >
-                NXTMDOC
+                  Next hat
                 </a>
               </Style.HeaderTitle>
             </Style.ContentHeaderLeft>

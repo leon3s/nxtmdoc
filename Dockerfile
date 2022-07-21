@@ -5,7 +5,7 @@ USER node
 
 # Create app directory (with user `node`)
 RUN mkdir -p /home/node/app
-RUN mkdir -p /home/node/doc
+RUN mkdir -p /opt/nxtmdoc
 
 WORKDIR /home/node/app
 
@@ -28,6 +28,6 @@ RUN npm run build
 ENV HOST=0.0.0.0 PORT=3000
 
 EXPOSE ${PORT}
-CMD [ "node", "server.js", "/home/node/doc" ]
+CMD [ "node", "server.js", "/opt/nxtmdoc" ]
 
-VOLUME doc:/home/node/doc
+VOLUME doc:/opt/nxtmdoc
