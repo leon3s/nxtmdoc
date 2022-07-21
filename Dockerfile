@@ -1,11 +1,12 @@
 from node:16.16.0
 
+RUN mkdir -p /opt/nxtmdoc
+RUN chown -R node /opt/nxtmdoc
 # Set to a non-root built-in user `node`
 USER node
 
 # Create app directory (with user `node`)
 RUN mkdir -p /home/node/app
-RUN mkdir -p /opt/nxtmdoc
 
 WORKDIR /home/node/app
 
