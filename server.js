@@ -76,9 +76,27 @@ function stat_path(file_path) {
   }
 }
 
+function for_each_node(tree, fn) {
+  tree?.children?.forEach((node) => {
+    fn(node);
+    for_each_node(node, fn);
+  });
+}
+
 
 app.prepare().then(() => {
   const server = express();
+
+  server.get("/.sitemap.txt", (req, res) => {
+    const tree = generate_dir_tree(doc_path);
+
+    let result = "";
+    for_each_node(tree, (node) => {
+      result += node.url + "\r\n";
+    });
+    res.setHeader('content-type', 'text/plain');
+    res.send(result);
+  });
 
   server.get("/search", (req, res) => {
     return app.render(req, res, "/s");
