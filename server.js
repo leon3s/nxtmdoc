@@ -92,7 +92,7 @@ app.prepare().then(() => {
 
     let result = "";
     for_each_node(tree, (node) => {
-      result += node.url + "\r\n";
+      result += "https://docs.next-hat.com/" + node.url + "\r\n";
     });
     res.setHeader('content-type', 'text/plain');
     res.send(result);
