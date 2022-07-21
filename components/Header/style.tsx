@@ -13,7 +13,7 @@ export const ContainerHeader = Styled.div`
   height: 50px;
   position: fixed;
   z-index: 999;
-  background-color: orange;
+  background-color: #23292f;
 `;
 
 export const ContentHeader = Styled.div`
