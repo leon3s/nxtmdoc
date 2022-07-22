@@ -3,8 +3,12 @@ export type DocTreeNode = {
   url: string,
   path: string,
   dir_name: string,
-  type: 'file' | 'directory',
+  is_dir: boolean,
   children: DocTreeNode[],
+  titles: {
+    name: string,
+    id: string,
+  }[],
   meta: {
     title: string,
     description: string,

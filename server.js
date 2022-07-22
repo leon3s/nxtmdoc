@@ -102,6 +102,22 @@ function stat_path(file_path) {
   }
 }
 
+function extract_titles(content) {
+  try {
+    const result = content.match(/<h2.*?>(.*?)<\/h2>/gms);
+    return result.map((item) => {
+      const name = item.replace(/<(?:.|\n)*?>/gm, '');
+      const id = name.replace(/[^\w\s]/gi, '').replace(/ +/g, '-').toLocaleLowerCase();
+      return {
+        name,
+        id,
+      }
+    });
+  } catch {
+    return [];
+  }
+}
+
 function for_each_node(tree, fn) {
   tree?.children?.forEach((node) => {
     fn(node);
@@ -112,9 +128,9 @@ function for_each_node(tree, fn) {
 app.prepare().then(() => {
   const server = express();
 
+  // Generate sitemap.txt for search engines
   server.get("/.sitemap.txt", (req, res) => {
     const tree = generate_dir_tree(doc_path);
-
     let result = "https://docs.next-hat.com\r\n";
     for_each_node(tree, (node) => {
       if (node.name !== "body.html") {
@@ -136,22 +152,12 @@ app.prepare().then(() => {
     } catch {
 
     }
-
-    readFileSync
+    const tree = generate_dir_tree(doc_path);
     return app.render(req, res, "/", {
       body,
-      header_links: [],
-      home_page_blocks: [],
+      tree,
     })
   });
-
-  server.get("/api/config", (req, res) => {
-    res.json({
-      header_links: [],
-      home_page_blocks: [],
-    });
-  });
-
 
   server.use((req, res, next) => {
     if (req.method !== "GET") return next();
@@ -164,7 +170,12 @@ app.prepare().then(() => {
       const doc_node = new_doc_node(node_path, false);
       const tree = generate_dir_tree(dir_path);
       const doc_content = get_doc_content(node_path);
+      if (!doc_content.length) {
+        if (doc_node?.children?.length) return res.redirect(doc_node.children[0].url);
+      }
       const meta = extract_meta(doc_content);
+      const titles = extract_titles(doc_content);
+      doc_node.titles = titles;
       doc_node.meta = meta;
       const props = {
         tree: tree,

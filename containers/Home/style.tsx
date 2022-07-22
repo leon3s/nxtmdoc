@@ -11,7 +11,7 @@ export const Container = Styled.div`
 
 export const Center = Styled.div`
   margin: 40px;
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 900px) {
     margin: 0px;
   }
 `;

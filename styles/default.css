@@ -222,3 +222,7 @@ p {
   overflow: hidden;
   word-break: break-word;
 }
+
+ol {
+  padding-inline-start: 14px;
+}

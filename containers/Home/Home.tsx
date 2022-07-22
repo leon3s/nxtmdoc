@@ -8,12 +8,6 @@ import SearchBar from '~/components/SearchBar';
 
 export type HomeContainerProps = {
   body: string,
-  home_page_blocks: {
-    title: string,
-    description: string,
-    icon: string,
-    url: string,
-  }[]
   router: NextRouter;
 };
 

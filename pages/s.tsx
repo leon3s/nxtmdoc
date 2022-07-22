@@ -1,11 +1,10 @@
 import React from 'react';
+import Script from 'next/script';
 import Header from '~/components/Header';
-
-import type { GetServerSidePropsResult } from 'next';
-type SearchPageProps = {
-};
-
 import GoogleSearch from '~/components/GoogleSearch';
+import type { GetServerSidePropsResult } from 'next';
+
+type SearchPageProps = {};
 
 export const getServerSideProps = async ({}: any): Promise<GetServerSidePropsResult<any>> => {
   return {
@@ -16,6 +15,7 @@ export const getServerSideProps = async ({}: any): Promise<GetServerSidePropsRes
 function SearchPage({}: SearchPageProps) {
   return (
     <>
+      <Script async src="https://cse.google.com/cse.js?cx=5c4a0cc2eff9d52d2" />
       <GoogleSearch />
     </>
   );

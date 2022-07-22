@@ -12,6 +12,7 @@ export const ContainerHeader = Styled.div`
   width: 100%;
   height: 84px;
   position: fixed;
+  box-shadow: 0 3px 6px rgb(11 33 74 / 9%), 0 -2px 2px rgb(11 33 74 / 3%);
   z-index: 999;
   background-color: #23292f;
 `;
@@ -32,28 +33,40 @@ export const HeaderTitleLink = Styled.a`
   flex-direction: row;
   margin: 0;
   align-items: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
 `;
 
 export const HeaderTitle = Styled.h1`
   color: white;
   margin: 0;
   padding-left: 8px;
+  height: 100%;
+  display: flex;
+  align-items: center;
   font-size: 14px;
   a {
     color: white;
   }
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 900px) {
     display: none;
   }
 `;
 
 export const ContentHeaderLeft = Styled.div`
+  height: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
 `;
 
 export const ContentHeaderCenter = Styled.div`
-  display: flex;
   width: auto;
+  height: 100%;
   flex: 1;
+  display: flex;
+  align-items: center;
 `;
 
 export const HeaderNav = Styled.ul`
@@ -61,11 +74,18 @@ export const HeaderNav = Styled.ul`
   float: left;
   margin: 0;
   display: flex;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
   justify-content: right;
   list-style: none;
   padding-left: 0;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
+  @media only screen and (max-width: 900px) {
+    display: none;
+  }
 `;
 
 export const ContentHeaderRight = Styled.div`
@@ -79,18 +99,19 @@ export const HeaderLink = Styled.a<{
   color: white;
   font-size: 14px;
   font-weight: 600;
-  line-height: 25px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  border-bottom: 4px solid rgba(0, 0, 0, 0);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  color: white !important;
+  justify-content: center;
+  height: 100%;
   &:hover {
-    opacity: 0.6;
-    border-bottom-width: 4px;
-    border-bottom-style: solid;
-    border-bottom-color: white;
+    font-weight: 800;
+    color: orange !important;
   }
   ${props => props.selected ? `
-    border-bottom-color: white;
+    font-weight: 800;
+    color: orange !important;
   ` : `
   `}
 `;
@@ -98,6 +119,9 @@ export const HeaderLink = Styled.a<{
 
 export const MobileHeaderMenu = Styled.div`
   position: relative;
+  @media only screen and (min-width: 900px) {
+    display: none;
+  }
 `;
 
 export const MobileHeaderMenuFixed = Styled.div<{
@@ -132,7 +156,7 @@ export const MenuButtonIcon = Styled.div<{
   transform: rotate(90deg);
   ` : `
   `}
-  @media only screen and (min-width: 601px) {
+  @media only screen and (min-width: 900px) {
     display: none;
   }
 `;

@@ -6,12 +6,6 @@ import type { GetServerSidePropsResult } from 'next';
 
 type IndexPageProps = {
   body: string,
-  home_page_blocks: {
-    title: string,
-    description: string,
-    icon: string,
-    url: string,
-  }[]
 };
 
 export const getServerSideProps = async (ctx: any): Promise<GetServerSidePropsResult<any>> => {

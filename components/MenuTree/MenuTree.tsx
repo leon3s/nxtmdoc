@@ -6,11 +6,11 @@ import * as Style from './style';
 import type { DocTreeNode } from 'types/doc_tree.h';
 
 export type PropsMenuTree = {
-  tree: DocTreeNode,
-  node: DocTreeNode,
+  tree?: DocTreeNode,
+  node?: DocTreeNode,
 };
 
-const renderTree = (tree: DocTreeNode, router: NextRouter) => {
+const renderTree = (router: NextRouter, tree?: DocTreeNode) => {
   if (!tree?.children) return null;
   return tree.children.map((node, i) => (
     <TreeItem
@@ -20,10 +20,10 @@ const renderTree = (tree: DocTreeNode, router: NextRouter) => {
       style={{
         borderLeft: router.asPath === node.url ? '4px solid orange' : '4px solid transparent',
       }}
-      onClick={() => node.url && node.url !== router.asPath ? window.location.replace(node.url) : undefined}
+      onClick={() => (!node.is_dir) && node.url && node.url !== router.asPath ? window.location.href = node.url : undefined}
     >
       {node?.children?.length ?
-        renderTree(node, router)
+        renderTree(router, node)
         : null}
     </TreeItem>
   ));
@@ -42,8 +42,8 @@ const MenuTree = (props: PropsMenuTree) => {
       <Style.ContainerMenuTree>
         <TreeView
           aria-label="file system navigator"
-          selected={router.asPath}
-          expanded={expanded}
+          defaultSelected={router.asPath}
+          defaultExpanded={expanded}
           defaultExpandIcon={<i style={{
             color: 'orange',
           }} className="fas fa-chevron-right"></i>}
@@ -53,7 +53,7 @@ const MenuTree = (props: PropsMenuTree) => {
           // defaultExpandIcon={<ChevronRightIcon />}
           sx={{ height: '100%', flexGrow: 1, maxWidth: 242, overflowY: 'auto', marginRight: 0 }}
         >
-          {renderTree(props.tree, router)}
+          {renderTree(router, props.tree)}
         </TreeView>
       </Style.ContainerMenuTree>
     </Style.ShadowContainer>

@@ -8,11 +8,8 @@ import type { DocTreeNode } from 'types/doc_tree.h';
 import Image from 'next/image';
 
 export type PropsHeader = {
-  content: string,
-  node: DocTreeNode,
-  statusCode: number,
-  tree: DocTreeNode,
-  header_links: any[],
+  node?: DocTreeNode,
+  tree?: DocTreeNode,
 };
 
 const Header = (props: PropsHeader) => {
@@ -35,13 +32,13 @@ const Header = (props: PropsHeader) => {
             </Style.ContentHeaderLeft>
             <Style.ContentHeaderCenter>
               <Style.HeaderNav>
-                {props.header_links?.map((header_link) => (
+                {props.tree?.children?.map((node) => (
                   <Style.HeaderLink
-                    key={header_link.url}
-                    selected={router.asPath.startsWith(header_link.url)}
-                    href={header_link.url}
+                    key={node.url}
+                    selected={router.asPath.startsWith(node.url)}
+                    href={node.url}
                   >
-                    {header_link.title}
+                    {node.name}
                   </Style.HeaderLink>
                 )) || null}
               </Style.HeaderNav>
@@ -49,7 +46,7 @@ const Header = (props: PropsHeader) => {
             {/* <Style.ContentHeaderRight>
             TODO Light/Dark mode
           </Style.ContentHeaderRight> */}
-            <Style.MobileHeaderMenu>
+            {props.tree?.children?.length ? <Style.MobileHeaderMenu>
               <Style.MenuButton
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
@@ -61,7 +58,7 @@ const Header = (props: PropsHeader) => {
               <Style.MobileHeaderMenuFixed isOpen={isMenuOpen}>
                 <MenuTree tree={props.tree} node={props.node} />
               </Style.MobileHeaderMenuFixed>
-            </Style.MobileHeaderMenu>
+            </Style.MobileHeaderMenu> : null}
           </Style.ContentHeader>
           <Separator />
         </Style.ContainerHeader>

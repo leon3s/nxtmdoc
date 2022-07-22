@@ -45,7 +45,6 @@ class MyApp extends App<AppPropsWithLayout> {
             <meta property="og:description" content="Documentation for next hat based products" />
             <meta property="og:image" content="https://download.next-hat.com/ressources/images/logo.png" />
           </Head>
-          <Script async src="https://cse.google.com/cse.js?cx=5c4a0cc2eff9d52d2" />
           <Script async src="https://www.googletagmanager.com/gtag/js?id=G-KRJ1J2E52X" />
           <Script id="google-analitics" async>
             {`

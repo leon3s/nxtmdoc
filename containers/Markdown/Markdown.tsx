@@ -4,7 +4,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import ReactMarkdown from 'react-markdown';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/prism';
-import * as prims from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import {vs} from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import { NextRouter, withRouter } from 'next/router';
 import type { DocTreeNode } from 'types/doc_tree.h';
@@ -22,6 +22,46 @@ export type PropsContainerMarkdown = {
 
 class ContainerMarkdown extends
   React.PureComponent<PropsContainerMarkdown> {
+
+  state = {
+    currentTitle: null,
+  }
+
+  onScroll: any;
+
+  componentDidMount() {
+
+    // if (document.location.hash) {
+    //   const elem = document.getElementById(document.location.hash);
+    //   elem?.scrollTo();
+    // }
+    /// TODO check on scroll what is the closed h2 element
+    // this.onScroll = document.addEventListener('scroll', (ev) => {
+    //   var elements = document.getElementsByClassName('div-linked');
+    //   for (var i = 0; i < elements.length; i++) {
+    //     const element = elements[i];
+    //     var position = element.getBoundingClientRect();
+    //     if (( element.offsetWidth || element.offsetHeight || element.getClientRects().length )) {
+    //       console.log('Element is fully visible in screen');
+    //       const id = element.id;
+    //       if (id && id !== this.state.currentTitle) {
+    //         this.setState({
+    //           currentTitle: id,
+    //         });
+    //       }
+    //     }
+      
+    //     // checking for partial visibility
+    //     if(position.top < window.innerHeight && position.bottom >= 0) {
+    //       console.log('Element is partially visible in screen');
+    //     }
+    //   }
+    // });
+  }
+
+  componentWillUnmount() {
+    // document.removeEventListener('scroll', this.onScroll);
+  }
 
   render = () => {
     const {router} = this.props;
@@ -47,6 +87,18 @@ class ContainerMarkdown extends
               rehypePlugins={[rehypeRaw]}
               remarkPlugins={[remarkGfm]}
               components={{
+                h2({node, children, ...props}) {
+                  const id = String(children).replace(/[^\w\s]/gi, '').replace(/ +/g, '-').toLocaleLowerCase();
+                  return (
+                    <>
+                      <Style.DivLinked
+                        id={id}
+                        className="div-linked"
+                      />
+                      <h2 {...props}>{children}</h2>
+                    </>
+                  )
+                },
                 a({node, href, children, ...props}) {
                   let injected_href = href;
                   if (href?.startsWith("./")) {
@@ -85,7 +137,7 @@ class ContainerMarkdown extends
                       children={String(children).replace(/\n$/, '')}
                       language={match[1]}
                       PreTag="pre"
-                      style={prims.vs}
+                      style={vs}
                     />
                       // <code className={className} {...props}>
                       //   <pre>
@@ -102,7 +154,7 @@ class ContainerMarkdown extends
                       children={String(children).replace(/\n$/, '')}
                       language={match[1]}
                       PreTag="pre"
-                      style={prims.vs}
+                      style={vs}
                     />
                   ) : (
                     <code className={className} {...props}>
@@ -115,6 +167,42 @@ class ContainerMarkdown extends
               {this.props.content}
             </ReactMarkdown>
           </Style.ContainerMarkdown>
+          <Style.MenuRight>
+            <Style.MenuContainer>
+              <Style.MenuRightFixed>
+                <Style.MenuRightLink
+                  href={`https://github.com/nxthat/documentation/edit/master${router.asPath}.md`}
+                  target="_blank"
+                >
+                  <Style.Icon className="fas fa-pen-to-square"></Style.Icon>
+                  Edit this page
+                </Style.MenuRightLink>
+                <Style.MenuRightLink
+                  href={`https://github.com/nxthat/documentation/issues/new?body=File:%20[${router.asPath}.md](https://docs.next-hat.com${router.asPath})`}
+                  target="_blank"
+                >
+                  <Style.Icon className="fas fa-check"></Style.Icon>
+                  Request doc change
+                </Style.MenuRightLink>
+                {this.props?.node?.titles?.length ?
+                  <Style.MenuRightLine>
+                    <Style.MenuRightPageTitle>
+                      On this page:
+                    </Style.MenuRightPageTitle>
+                  </Style.MenuRightLine>
+                : null}
+                {this.props?.node?.titles?.map((title) => (
+                  <Style.MenuRightLink
+                    key={title.id}
+                    href={`${router.asPath}#${title.id}`}
+                    selected={title.id === this.state.currentTitle}
+                  >
+                    {title.name}
+                  </Style.MenuRightLink>
+                ))}
+              </Style.MenuRightFixed>
+            </Style.MenuContainer>
+          </Style.MenuRight>
         </Style.MainContainer>
       </>
     );
