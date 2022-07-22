@@ -20,7 +20,7 @@ const renderTree = (tree: DocTreeNode, router: NextRouter) => {
       style={{
         borderLeft: router.asPath === node.url ? '4px solid orange' : '4px solid transparent',
       }}
-      onClick={() => node.url && node.url !== router.asPath ? router.push(node.url) : undefined}
+      onClick={() => node.url && node.url !== router.asPath ? window.location.replace(node.url) : undefined}
     >
       {node?.children?.length ?
         renderTree(node, router)
