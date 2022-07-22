@@ -39,6 +39,11 @@ class MyApp extends App<AppPropsWithLayout> {
             <title>Next Hat documentation</title>
             <meta name="viewport" content="width=device-width, user-scalable=no" />
             <link rel="shortcut icon" href="https://download.next-hat.com/ressources/images/logo.png" type="image/png" />
+            <meta property="og:url" content="https://docs.next-hat.com" />
+            <meta property="og:type" content="article" />
+            <meta property="og:title" content="Next Hat documentation" />
+            <meta property="og:description" content="Documentation for next hat based products" />
+            <meta property="og:image" content="https://download.next-hat.com/ressources/images/logo.png" />
           </Head>
           <Script async src="https://cse.google.com/cse.js?cx=5c4a0cc2eff9d52d2" />
           <Script async src="https://www.googletagmanager.com/gtag/js?id=G-KRJ1J2E52X" />

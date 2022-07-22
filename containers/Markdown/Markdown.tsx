@@ -31,6 +31,11 @@ class ContainerMarkdown extends
           <title>{this.props.node.meta.title}</title>
           <meta name="description" content={this.props.node.meta.description} />
           <meta name="keywords" content={this.props.node.meta.keywords} />
+          <meta property="og:url" content={`https://docs.next-hat.com` + router.asPath} />
+          <meta property="og:type" content="article" />
+          <meta property="og:title" content={this.props.node.meta.title} />
+          <meta property="og:description" content={this.props.node.meta.description} />
+          <meta property="og:image" content="https://download.next-hat.com/ressources/images/logo.png" />
         </Head>
         <Style.MainContainer>
           <Style.MenuContainer>
