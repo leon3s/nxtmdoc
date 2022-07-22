@@ -44,7 +44,7 @@ class MyApp extends App<AppPropsWithLayout> {
             <meta property="og:url" content="https://docs.next-hat.com" />
             <meta property="og:type" content="article" />
             <meta property="og:title" content="Next Hat documentation" />
-            <meta property="og:description" content="Documentation for next hat based products" />
+            <meta property="og:description" content="Welcome on documentation for Next Hat based products and tools such as nanocl and more" />
             <meta property="og:image" content="https://download.next-hat.com/ressources/images/logo.png" />
           </Head>
           <Script async src="https://www.googletagmanager.com/gtag/js?id=G-KRJ1J2E52X" />
