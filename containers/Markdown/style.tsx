@@ -25,7 +25,6 @@ export const ContainerMarkdown = Styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  max-width: 1024px;
   overflow: hidden;
 `;
 
@@ -33,6 +32,9 @@ export const MenuRight = Styled.div`
   width: 242px;
   height: 100%;
   position: relative;
+  @media only screen and (max-width: 900px) {
+    display: none;
+  }
 `;
 
 export const MenuRightFixed = Styled.div`

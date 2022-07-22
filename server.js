@@ -107,7 +107,7 @@ function extract_titles(content) {
     const result = content.match(/<h2.*?>(.*?)<\/h2>/gms);
     return result.map((item) => {
       const name = item.replace(/<(?:.|\n)*?>/gm, '');
-      const id = name.replace(/[^\w\s]/gi, '').replace(/ +/g, '-').toLocaleLowerCase();
+      const id = name.replace(/[^\w\s]/gi, '').trim().replace(/ +/g, '-').toLocaleLowerCase();
       return {
         name,
         id,

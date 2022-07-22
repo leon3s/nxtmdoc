@@ -88,7 +88,7 @@ class ContainerMarkdown extends
               remarkPlugins={[remarkGfm]}
               components={{
                 h2({node, children, ...props}) {
-                  const id = String(children).replace(/[^\w\s]/gi, '').replace(/ +/g, '-').toLocaleLowerCase();
+                  const id = String(children).replace(/[^\w\s]/gi, '').trim().replace(/ +/g, '-').toLocaleLowerCase();
                   return (
                     <>
                       <Style.DivLinked
@@ -171,14 +171,14 @@ class ContainerMarkdown extends
             <Style.MenuContainer>
               <Style.MenuRightFixed>
                 <Style.MenuRightLink
-                  href={`https://github.com/nxthat/documentation/edit/master${router.asPath}.md`}
+                  href={`https://github.com/nxthat/documentation/edit/master${this.props.node.url}.md`}
                   target="_blank"
                 >
                   <Style.Icon className="fas fa-pen-to-square"></Style.Icon>
                   Edit this page
                 </Style.MenuRightLink>
                 <Style.MenuRightLink
-                  href={`https://github.com/nxthat/documentation/issues/new?body=File:%20[${router.asPath}.md](https://docs.next-hat.com${router.asPath})`}
+                  href={`https://github.com/nxthat/documentation/issues/new?body=File:%20[${this.props.node.url}.md](https://docs.next-hat.com${router.asPath})`}
                   target="_blank"
                 >
                   <Style.Icon className="fas fa-check"></Style.Icon>
