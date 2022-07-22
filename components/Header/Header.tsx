@@ -16,14 +16,14 @@ const Header = (props: PropsHeader) => {
         <Style.ContainerHeader>
           <Style.ContentHeader>
             <Style.ContentHeaderLeft>
-                <Style.HeaderTitleLink
-                  href="/"
-                >
-                  <img src="https://download.next-hat.com/ressources/images/logo.png" alt="logo" width={42} height={42} />
+              <Style.HeaderTitleLink
+                href="/"
+              >
+                <img src="https://download.next-hat.com/ressources/images/logo.png" alt="logo" width={42} height={42} />
                 <Style.HeaderTitle>
                     Next Hat Docs
                 </Style.HeaderTitle>
-                </Style.HeaderTitleLink>
+              </Style.HeaderTitleLink>
             </Style.ContentHeaderLeft>
             <Style.ContentHeaderCenter>
               <Style.HeaderNav>
