@@ -49,10 +49,12 @@ body {
 }
 
 code {
+  font-size: 12px !important;
   font-family: "Consolas", sans-serif;
 }
 
 code > strong {
+  font-size: 12px !important;
   font-family: "Consolas", sans-serif;
 }
 
@@ -214,4 +216,9 @@ a:hover {
 
 a:visited {
   color: rgba(255, 165, 0, 1);
+}
+
+p {
+  overflow: hidden;
+  word-break: break-word;
 }

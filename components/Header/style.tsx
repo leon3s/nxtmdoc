@@ -1,8 +1,8 @@
 import Styled from 'styled-components';
 
 export const ShadowContainer = Styled.div`
-  min-height: 50px;
-  max-height: 50px;
+  min-height: 84px;
+  max-height: 84px;
   width: 100%;
   position: relative;
   background-color: #ffa500;
@@ -10,7 +10,7 @@ export const ShadowContainer = Styled.div`
 
 export const ContainerHeader = Styled.div`
   width: 100%;
-  height: 50px;
+  height: 84px;
   position: fixed;
   z-index: 999;
   background-color: #23292f;
@@ -18,8 +18,8 @@ export const ContainerHeader = Styled.div`
 
 export const ContentHeader = Styled.div`
   height: 100%;
-  padding-right: 30px;
-  padding-left: 30px;
+  padding-right: 20px;
+  padding-left: 20px;
   margin-right: auto;
   margin-left: auto;
   display:flex;
@@ -41,6 +41,9 @@ export const HeaderTitle = Styled.h1`
   font-size: 14px;
   a {
     color: white;
+  }
+  @media only screen and (max-width: 600px) {
+    display: none;
   }
 `;
 
@@ -91,3 +94,46 @@ export const HeaderLink = Styled.a<{
   ` : `
   `}
 `;
+
+
+export const MobileHeaderMenu = Styled.div`
+  position: relative;
+`;
+
+export const MobileHeaderMenuFixed = Styled.div<{
+  isOpen: boolean,
+}>`
+  position: fixed;
+  right: 0px;
+  top: 84px;
+  transition-duration: 0.8s;
+  transition-property: right;
+  ${props => props.isOpen ? `
+    right: 0px;
+  ` : `
+    right: -242px;
+  `}
+`;
+
+export const MenuButton = Styled.button`
+  background-color: transparent;
+  border: none;
+  outline: none;
+`;
+
+export const MenuButtonIcon = Styled.div<{
+  isOpen: boolean,
+}>`
+  font-size: 24px;
+  color: white;
+  transition-duration: 0.8s;
+  transition-property: transform;
+  ${props => props.isOpen ? `
+  transform: rotate(90deg);
+  ` : `
+  `}
+  @media only screen and (min-width: 601px) {
+    display: none;
+  }
+`;
+

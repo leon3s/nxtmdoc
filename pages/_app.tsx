@@ -37,10 +37,18 @@ class MyApp extends App<AppPropsWithLayout> {
         <React.Fragment>
           <Head>
             <title>Next Hat documentation</title>
-            <link rel="shortcut icon" href="https://download.next-hat.com/ressources/images/logo.png" type="image/png" />
             <meta name="viewport" content="width=device-width, user-scalable=no" />
+            <link rel="shortcut icon" href="https://download.next-hat.com/ressources/images/logo.png" type="image/png" />
           </Head>
           <Script async src="https://cse.google.com/cse.js?cx=5c4a0cc2eff9d52d2" />
+          <Script async src="https://www.googletagmanager.com/gtag/js?id=G-KRJ1J2E52X" />
+          <Script async children={`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-KRJ1J2E52X');
+          `}/>
           {getLayout(Component, pageProps)}
         </React.Fragment>
       </ThemeProvider>

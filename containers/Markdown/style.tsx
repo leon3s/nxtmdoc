@@ -3,16 +3,20 @@ import Styled from 'styled-components';
 export const MainContainer = Styled.div`
   display: flex;
   flex: 1;
-  width: 100%;
   flex-direction: row;
 `;
 
 export const MenuContainer = Styled.div`
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
 `;
 
 export const ContainerMarkdown = Styled.div`
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 0px 20px 40px 40px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 100%;
+  overflow: hidden;
 `;

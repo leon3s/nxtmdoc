@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Separator from '../Separator';
 import { useRouter } from 'next/router';
 
 import * as Style from './style';
+import MenuTree from '../MenuTree';
+import type { DocTreeNode } from 'types/doc_tree.h';
 
 export type PropsHeader = {
+  content: string,
+  node: DocTreeNode,
+  statusCode: number,
+  tree: DocTreeNode,
   header_links: any[],
 };
 
 const Header = (props: PropsHeader) => {
   const router = useRouter();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <>
       <Style.ShadowContainer>
@@ -41,6 +48,19 @@ const Header = (props: PropsHeader) => {
             {/* <Style.ContentHeaderRight>
             TODO Light/Dark mode
           </Style.ContentHeaderRight> */}
+          <Style.MobileHeaderMenu>
+            <Style.MenuButton
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <Style.MenuButtonIcon
+                className="fas fa-bars"
+                isOpen={isMenuOpen}
+              />
+            </Style.MenuButton>
+            <Style.MobileHeaderMenuFixed isOpen={isMenuOpen}>
+              <MenuTree tree={props.tree} node={props.node} />
+            </Style.MobileHeaderMenuFixed>
+          </Style.MobileHeaderMenu>
           </Style.ContentHeader>
           <Separator />
         </Style.ContainerHeader>
