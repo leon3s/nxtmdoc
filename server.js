@@ -78,6 +78,7 @@ function generate_dir_tree(curr_path) {
       const file_path = path.join(curr_path, file);
       const name = path.basename(file_path);
       const start = name.charAt(0);
+      if (name === "body.html") continue;
       if (name === "README.md") continue;
       if (start === '.' || start === '_') continue;
       node.children.push(generate_dir_tree(file_path));
