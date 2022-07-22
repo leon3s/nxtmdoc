@@ -57,18 +57,18 @@ class ContainerMarkdown extends
                   const match = /language-(\w+)/.exec(className || '')
                   if (match && match[1] === "sh") {
                     const lines = String(children).trim().split("\n");
-                    const html = lines.map((line) => {
-                      const [cmd, ...args] = line.split(" ");
+                    const html = lines.map((line, i) => {
+                      const [cmd, ...lines] = line.split(" ");
                       return (
-                        <>
+                        <code key={i}>
                           <strong style={{
                             lineHeight: "1.2em",
                           }}>
                             {cmd}&nbsp;
                           </strong>
-                          {args.join(" ")}
+                          {lines.join(" ")}
                           <br />
-                        </>
+                        </code>
                       )
                     });
                     return (

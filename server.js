@@ -26,7 +26,7 @@ function extract_meta(content) {
   }
   try {
     const tags = content.match(/<([^\s]+).*?id="nxtmdoc-meta-keywords".*?>((.+?))<\/\1>/gms)[0]?.replace(/<(?:.|\n)*?>/gm, '').trim();
-    keywords = tags.replace(/.*?\n/g, "");
+    keywords = tags.replace(/.*?\n/g, "").trim();
   } catch {
   }
   return {

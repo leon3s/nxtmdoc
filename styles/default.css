@@ -147,8 +147,9 @@ blockquote.tags > :first-child {
   font-weight: 600;
 }
 
-blockquote.tags > p {
+blockquote.tags > span {
   color: lightsalmon;
+  font-size: 12px;
 }
 
 blockquote.info {
