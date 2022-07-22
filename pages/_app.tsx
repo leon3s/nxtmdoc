@@ -42,13 +42,15 @@ class MyApp extends App<AppPropsWithLayout> {
           </Head>
           <Script async src="https://cse.google.com/cse.js?cx=5c4a0cc2eff9d52d2" />
           <Script async src="https://www.googletagmanager.com/gtag/js?id=G-KRJ1J2E52X" />
-          <Script async children={`
+          <Script id="google-analitics" async>
+            {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
             gtag('config', 'G-KRJ1J2E52X');
-          `}/>
+          `}
+          </Script>
           {getLayout(Component, pageProps)}
         </React.Fragment>
       </ThemeProvider>

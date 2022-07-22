@@ -48,19 +48,19 @@ const Header = (props: PropsHeader) => {
             {/* <Style.ContentHeaderRight>
             TODO Light/Dark mode
           </Style.ContentHeaderRight> */}
-          <Style.MobileHeaderMenu>
-            <Style.MenuButton
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <Style.MenuButtonIcon
-                className="fas fa-bars"
-                isOpen={isMenuOpen}
-              />
-            </Style.MenuButton>
-            <Style.MobileHeaderMenuFixed isOpen={isMenuOpen}>
-              <MenuTree tree={props.tree} node={props.node} />
-            </Style.MobileHeaderMenuFixed>
-          </Style.MobileHeaderMenu>
+            <Style.MobileHeaderMenu>
+              <Style.MenuButton
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                <Style.MenuButtonIcon
+                  className="fas fa-bars"
+                  isOpen={isMenuOpen}
+                />
+              </Style.MenuButton>
+              <Style.MobileHeaderMenuFixed isOpen={isMenuOpen}>
+                <MenuTree tree={props.tree} node={props.node} />
+              </Style.MobileHeaderMenuFixed>
+            </Style.MobileHeaderMenu>
           </Style.ContentHeader>
           <Separator />
         </Style.ContainerHeader>
