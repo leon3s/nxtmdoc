@@ -5,6 +5,7 @@ import HomeContainer from '~/containers/Home';
 import type { GetServerSidePropsResult } from 'next';
 
 type IndexPageProps = {
+  body: string,
   home_page_blocks: {
     title: string,
     description: string,

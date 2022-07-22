@@ -7,6 +7,7 @@ import * as Style from './style';
 import SearchBar from '~/components/SearchBar';
 
 export type HomeContainerProps = {
+  body: string,
   home_page_blocks: {
     title: string,
     description: string,
@@ -28,21 +29,7 @@ class HomeContainer extends
         </Style.HeroContainer>
         <Style.Center>
           <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-              {this.props.home_page_blocks.map((block, i) => (
-              <Grid item xs={4} key={i}>
-                  <Style.GridLink href={block.url} key={block.url}>
-                    <Style.GridIcon src={block.icon} />
-                    <Style.GridTitle>
-                      {block.title}
-                    </Style.GridTitle>
-                    <Style.GridDesription>
-                      {block.description}
-                    </Style.GridDesription>
-                  </Style.GridLink>
-              </Grid>
-              ))}
-            </Grid>
+            <div dangerouslySetInnerHTML={{__html: this.props.body}} />
           </Box>
         </Style.Center>
       </Style.Container>

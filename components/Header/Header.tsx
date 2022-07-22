@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import * as Style from './style';
 import MenuTree from '../MenuTree';
 import type { DocTreeNode } from 'types/doc_tree.h';
+import Image from 'next/image';
 
 export type PropsHeader = {
   content: string,
@@ -26,7 +27,7 @@ const Header = (props: PropsHeader) => {
               <Style.HeaderTitleLink
                 href="/"
               >
-                <img src="https://download.next-hat.com/ressources/images/logo.png" alt="logo" width={42} height={42} />
+                <Image src="https://download.next-hat.com/ressources/images/logo.png" alt="logo" width={42} height={42} />
                 <Style.HeaderTitle>
                     Next Hat Docs
                 </Style.HeaderTitle>

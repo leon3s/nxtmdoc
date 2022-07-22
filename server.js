@@ -114,9 +114,11 @@ app.prepare().then(() => {
   server.get("/.sitemap.txt", (req, res) => {
     const tree = generate_dir_tree(doc_path);
 
-    let result = "";
+    let result = "https://docs.next-hat.com\r\n";
     for_each_node(tree, (node) => {
-      result += "https://docs.next-hat.com" + node.url + "\r\n";
+      if (node.name !== "body.html") {
+        result += "https://docs.next-hat.com" + node.url + "\r\n";
+      }
     });
     res.setHeader('content-type', 'text/plain');
     res.send(result);
@@ -127,7 +129,16 @@ app.prepare().then(() => {
   });
 
   server.get("/", (req, res) => {
+    let body = ''
+    try {
+      body = readFileSync(path.join(doc_path, "body.html"), 'utf-8');
+    } catch {
+
+    }
+
+    readFileSync
     return app.render(req, res, "/", {
+      body,
       header_links: [],
       home_page_blocks: [],
     })
