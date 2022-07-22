@@ -12,6 +12,30 @@ const handle = app.getRequestHandler();
 
 const doc_path = process.argv[2] ? path.resolve(process.argv[2]) : path.resolve("./test_doc/doc");
 
+function extract_meta(content) {
+  let title = '';
+  let description = '';
+  let keywords = '';
+  try {
+    title = content.match(/<([^\s]+).*?id="nxtmdoc-meta-title".*?>((.+?))<\/\1>/gms)[0]?.replace(/<(?:.|\n)*?>/gm, '').trim();
+  } catch {
+  }
+  try {
+    description = content.match(/<([^\s]+).*?id="nxtmdoc-meta-description".*?>((.+?))<\/\1>/gms)[0]?.replace(/<(?:.|\n)*?>/gm, '').trim();
+  } catch {
+  }
+  try {
+    const tags = content.match(/<([^\s]+).*?id="nxtmdoc-meta-keywords".*?>((.+?))<\/\1>/gms)[0]?.replace(/<(?:.|\n)*?>/gm, '').trim();
+    keywords = tags.replace(/.*?\n/g, "");
+  } catch {
+  }
+  return {
+    title,
+    description,
+    keywords,
+  }
+}
+
 function new_doc_node(p, is_dir) {
   const name = path.basename(p).replace(".md", '').replace(/-/g, ' ');
   const dir_name = path.dirname(p).replace(doc_path, '');
@@ -24,6 +48,7 @@ function new_doc_node(p, is_dir) {
     name,
     url,
     is_dir,
+    meta: {},
     dir_name,
     children: [],
   }
@@ -83,7 +108,6 @@ function for_each_node(tree, fn) {
   });
 }
 
-
 app.prepare().then(() => {
   const server = express();
 
@@ -118,20 +142,18 @@ app.prepare().then(() => {
 
 
   server.use((req, res, next) => {
-
     if (req.method !== "GET") return next();
-
     const dir_path = path.join(doc_path, req.path.split("/")[0]);
     let node_path = path.join(doc_path, req.path);
-
     if (!node_path.startsWith(doc_path)) return next();
     if (!dir_path.startsWith(doc_path)) return next();
-
     try {
       node_path = stat_path(node_path);
       const doc_node = new_doc_node(node_path, false);
       const tree = generate_dir_tree(dir_path);
       const doc_content = get_doc_content(node_path);
+      const meta = extract_meta(doc_content);
+      doc_node.meta = meta;
       const props = {
         tree: tree,
         node: doc_node,

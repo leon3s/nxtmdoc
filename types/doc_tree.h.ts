@@ -5,4 +5,9 @@ export type DocTreeNode = {
   dir_name: string,
   type: 'file' | 'directory',
   children: DocTreeNode[],
+  meta: {
+    title: string,
+    description: string,
+    keywords: string,
+  }
 };

@@ -36,8 +36,8 @@ class MyApp extends App<AppPropsWithLayout> {
       <ThemeProvider theme={themeDefault}>
         <React.Fragment>
           <Head>
-            <title>next hat documentation</title>
-            <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+            <title>Next Hat documentation</title>
+            <link rel="shortcut icon" href="https://download.next-hat.com/ressources/images/logo.png" type="image/png" />
             <meta name="viewport" content="width=device-width, user-scalable=no" />
           </Head>
           <Script async src="https://cse.google.com/cse.js?cx=5c4a0cc2eff9d52d2" />

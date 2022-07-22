@@ -27,8 +27,17 @@ export const ContentHeader = Styled.div`
   align-items: center;
 `;
 
+export const HeaderTitleLink = Styled.a`
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  align-items: center;
+`;
+
 export const HeaderTitle = Styled.h1`
   color: white;
+  margin: 0;
+  padding-left: 8px;
   font-size: 14px;
   a {
     color: white;

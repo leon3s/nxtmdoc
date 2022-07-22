@@ -138,13 +138,26 @@ blockquote {
   border-left: 5px solid #000000;
 }
 
+blockquote.tags {
+  border-left: 5px solid orange;
+}
+
+blockquote.tags > :first-child {
+  color: orange;
+  font-weight: 600;
+}
+
+blockquote.tags > p {
+  color: lightsalmon;
+}
+
 blockquote.info {
   border-left: 5px solid #116ED0;
 }
 
 blockquote.info > :first-child {
   color: #116ED0;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 blockquote.info > p {

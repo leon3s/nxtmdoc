@@ -23,7 +23,7 @@ class HomeContainer extends
     return (
       <Style.Container>
         <Style.HeroContainer>
-          <h2>What can we help you find?</h2>
+          <Style.Title>What can we help you find?</Style.Title>
           <SearchBar />
         </Style.HeroContainer>
         <Style.Center>

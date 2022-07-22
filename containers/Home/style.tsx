@@ -21,6 +21,10 @@ export const HeroContainer = Styled.div`
   margin: 40px;
 `;
 
+export const Title = Styled.h2`
+  text-align: center;
+`;
+
 export const GridLink = Styled.a`
   background-color: white;
   height: 180px;

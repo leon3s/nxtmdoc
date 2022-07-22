@@ -11,6 +11,7 @@ import type { DocTreeNode } from 'types/doc_tree.h';
 
 import * as Style from './style';
 import MenuTree from '~/components/MenuTree';
+import Head from 'next/head';
 
 export type PropsContainerMarkdown = {
   content: string,
@@ -26,6 +27,11 @@ class ContainerMarkdown extends
     const {router} = this.props;
     return (
       <>
+        <Head>
+          <title>{this.props.node.meta.title}</title>
+          <meta name="description" content={this.props.node.meta.description} />
+          <meta name="keywords" content={this.props.node.meta.keywords} />
+        </Head>
         <Style.MainContainer>
           <Style.MenuContainer>
             <MenuTree node={this.props.node} tree={this.props.tree} />
