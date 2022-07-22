@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, Box} from '@mui/material';
+import {Box} from '@mui/material';
 
 import { NextRouter, withRouter } from 'next/router';
 
@@ -29,7 +29,7 @@ class HomeContainer extends
         </Style.HeroContainer>
         <Style.Center>
           <Box sx={{ flexGrow: 1 }}>
-            <div dangerouslySetInnerHTML={{__html: this.props.body}} />
+            <div dangerouslySetInnerHTML={{__html: this.props.body }} />
           </Box>
         </Style.Center>
       </Style.Container>
