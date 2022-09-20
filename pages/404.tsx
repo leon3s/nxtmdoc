@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '~/components/Header';
 
 import Styled from 'styled-components';
+import Head from 'next/head';
 
 const Custom404Body = Styled.div`
   display: flex;
@@ -46,6 +47,17 @@ function custom404() {
 custom404.getLayout = (Page: typeof custom404, props: any) => {
   return (
     <>
+      <Head>
+        <title>Not Found - Next Hat Doc</title>
+        <meta property="description" content="This page not exist" />
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
+        <link rel="shortcut icon" href="https://download.next-hat.com/ressources/images/logo.png" type="image/png" />
+        <meta property="og:url" content="https://docs.next-hat.com" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Next Hat documentation" />
+        <meta property="og:description" content="This page not exist" />
+        <meta property="og:image" content="https://download.next-hat.com/ressources/images/logo.png" />
+      </Head>
       <Header {...props} />
       <Page {...props} />
     </>

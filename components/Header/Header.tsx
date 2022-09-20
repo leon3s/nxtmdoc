@@ -26,7 +26,7 @@ const Header = (props: PropsHeader) => {
               >
                 <Image src="https://download.next-hat.com/ressources/images/logo.png" alt="logo" width={42} height={42} />
                 <Style.HeaderTitle>
-                    Next Hat Docs
+                    Next Hat Doc
                 </Style.HeaderTitle>
               </Style.HeaderTitleLink>
             </Style.ContentHeaderLeft>

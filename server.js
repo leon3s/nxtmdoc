@@ -5,7 +5,7 @@ const next_conf = require('./next.config');
 const { readFileSync, statSync, readdirSync } = require('fs');
 
 const port = +(process.env.PORT || 3001);
-const dev = process.env.NODE_ENV === 'development';
+const dev = process.env.NODE_ENV !== 'production';
 
 const app = next({ dev, dir: __dirname, conf: next_conf });
 const handle = app.getRequestHandler();
