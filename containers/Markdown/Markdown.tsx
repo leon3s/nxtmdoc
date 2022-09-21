@@ -100,9 +100,9 @@ class ContainerMarkdown extends
                   )
                 },
                 a({node, href, children, ...props}) {
-                  let injected_href = href;
+                  let injected_href = href?.replace(".md", "");
                   if (href?.startsWith("./")) {
-                    injected_href = router.asPath + href.replace("./", "/").replace(".md", "");
+                    injected_href = router.asPath + injected_href?.replace("./", "/");
                   }
                   return (
                     <a {...props} href={injected_href}>
