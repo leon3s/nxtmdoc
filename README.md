@@ -11,9 +11,6 @@
  </span>
 </blockquote>
 
-</br>
-</br>
-
 ## Motivation
 
 Where `docusaurus` is a thing today and mostly used.
