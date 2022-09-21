@@ -18,7 +18,7 @@ I wanted to experience to make my own.
 It's follow better markdown compatibility with `Github`.
 So documentation can be both readable in `Github` and on the `Website`.
 
-## How to use it?
+## How to use it ?
 
 ```bash
   npm install && npm run dev ./test_doc
