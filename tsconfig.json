@@ -24,20 +24,23 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "paths": {
-      "~/styles/*": [
-        "./styles/*"
+      "~/external/*": [
+        "../documentation/.nxtmdoc/*",
       ],
-      "~/redux/*": [
-        "./redux/*"
+      "~/types/*": [
+        "./src/types/*"
       ],
       "~/utils/*": [
-        "./utils/*"
+        "./src/utils/*"
+      ],
+      "~/styles/*": [
+        "./src/styles/*"
       ],
       "~/components/*": [
-        "./components/*"
+        "./src/components/*"
       ],
       "~/containers/*": [
-        "./containers/*"
+        "./src/containers/*"
       ],
     },
     "incremental": true

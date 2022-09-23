@@ -1,11 +1,22 @@
-module.exports = {
+/** @type {import('next').NextConfig} */
+
+const path = require('path');
+
+const nextConfig = {
+  swcMinify: true,
   reactStrictMode: true,
   compiler: {
     styledComponents: true,
   },
-  images: {
-    domains: ['download.next-hat.com'],
-    formats: ['image/avif', 'image/webp'],
+  webpack: (
+    config,
+  ) => {
+    config.resolve.alias = {
+      '~/external': path.resolve(process.cwd(), '.nxtmdoc'),
+      ...config.resolve.alias,
+    }
+    return config
   },
-  env: {},
 }
+
+module.exports = nextConfig;

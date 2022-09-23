@@ -1,8 +1,7 @@
 {
   "name": "nxtmdoc",
-  "private": false,
   "bin": {
-    "nxtmdoc": "./server.js"
+    "nxtmdoc": "./bin/nxtmdoc.js"
   },
   "scripts": {
     "dev": "node ./server.js",
@@ -26,38 +25,33 @@
     "outputPath": "dist"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
-    "@fortawesome/fontawesome-svg-core": "^6.2.0",
-    "@fortawesome/free-regular-svg-icons": "^6.2.0",
-    "@fortawesome/free-solid-svg-icons": "^6.2.0",
-    "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/base": "^5.0.0-alpha.98",
     "@mui/lab": "^5.0.0-alpha.100",
     "@mui/material": "^5.10.6",
+    "@swc/core": "^1.3.2",
+    "@swc/register": "^0.1.10",
+    "commander": "^9.4.0",
+    "execa": "^6.1.0",
     "express": "^4.18.1",
-    "next": "^12.3.1",
-    "postcss-flexbugs-fixes": "^5.0.2",
-    "postcss-preset-env": "^7.8.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-markdown": "^8.0.3",
     "react-syntax-highlighter": "^15.5.0",
     "rehype-raw": "^6.1.1",
     "remark-gfm": "^3.0.1",
-    "styled-components": "^5.3.5",
     "yaml": "^2.1.1"
   },
   "devDependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "next": "^12.3.1",
     "@types/node": "^18.7.18",
     "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",
     "@types/react-syntax-highlighter": "^15.5.5",
-    "@types/styled-components": "^5.1.26",
     "eslint": "^8.23.1",
     "eslint-config-next": "^12.3.1",
     "hygen": "^6.2.11",
-    "pkg": "^5.8.0",
     "typescript": "^4.8.3"
   }
 }
