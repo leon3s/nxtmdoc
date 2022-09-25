@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '~/components/Header';
 
-import Styled from 'styled-components';
+import Styled from '@emotion/styled';
 import Head from 'next/head';
 
 const Custom404Body = Styled.div`

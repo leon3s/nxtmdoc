@@ -1,4 +1,4 @@
-import Styled from 'styled-components';
+import Styled from '@emotion/styled';
 
 export const ContainerSeparator = Styled.hr`
   border: 0;
