@@ -1,20 +1,20 @@
 import Styled from '@emotion/styled';
 
 export const ShadowContainer = Styled.div`
-  min-height: 84px;
-  max-height: 84px;
+  min-height: 62px;
+  max-height: 62px;
   width: 100%;
   position: relative;
-  background-color: #ffa500;
+  background-color: #1B1B1D;
 `;
 
 export const ContainerHeader = Styled.div`
   width: 100%;
-  height: 84px;
+  height: 62px;
   position: fixed;
   box-shadow: 0 3px 6px rgb(11 33 74 / 9%), 0 -2px 2px rgb(11 33 74 / 3%);
   z-index: 999;
-  background-color: #23292f;
+  background-color: #1B1B1D;
 `;
 
 export const ContentHeader = Styled.div`
@@ -45,7 +45,7 @@ export const HeaderTitle = Styled.h1`
   height: 100%;
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 22px;
   a {
     color: white;
   }
@@ -106,11 +106,9 @@ export const HeaderLink = Styled.a<{
   justify-content: center;
   height: 100%;
   &:hover {
-    font-weight: 800;
     color: orange !important;
   }
   ${props => props.selected ? `
-    font-weight: 800;
     color: orange !important;
   ` : `
   `}

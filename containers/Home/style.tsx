@@ -6,7 +6,6 @@ export const Container = Styled.div`
   flex-direction: column;
   width: 100%;
   flex: 1;
-  background-color: #F7F7F8;
 `;
 
 export const Center = Styled.div`
@@ -26,6 +25,7 @@ export const HeroContainer = Styled.div`
 
 export const Title = Styled.h2`
   text-align: center;
+  color: white;
 `;
 
 export const GridLink = Styled.a`

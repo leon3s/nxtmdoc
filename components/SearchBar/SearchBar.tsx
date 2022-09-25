@@ -24,9 +24,10 @@ const SearchBar = ({}: PropsSearchBar) => {
           type="search"
           variant="outlined"
           style={{
+            background: 'white',
+            borderRadius: '4px',
             maxWidth: 500,
             width: '100%',
-            backgroundColor: 'white',
           }}
           placeholder="Search for guides, terms, commands, and more..."
         />

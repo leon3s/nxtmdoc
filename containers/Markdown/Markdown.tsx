@@ -4,7 +4,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import ReactMarkdown from 'react-markdown';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/prism';
-import {vs} from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import {atomDark} from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import { NextRouter, withRouter } from 'next/router';
 import type { DocTreeNode } from 'types/doc_tree.h';
@@ -23,46 +23,6 @@ export type PropsContainerMarkdown = {
 class ContainerMarkdown extends
   React.PureComponent<PropsContainerMarkdown> {
 
-  state = {
-    currentTitle: null,
-  }
-
-  onScroll: any;
-
-  componentDidMount() {
-
-    // if (document.location.hash) {
-    //   const elem = document.getElementById(document.location.hash);
-    //   elem?.scrollTo();
-    // }
-    /// TODO check on scroll what is the closed h2 element
-    // this.onScroll = document.addEventListener('scroll', (ev) => {
-    //   var elements = document.getElementsByClassName('div-linked');
-    //   for (var i = 0; i < elements.length; i++) {
-    //     const element = elements[i];
-    //     var position = element.getBoundingClientRect();
-    //     if (( element.offsetWidth || element.offsetHeight || element.getClientRects().length )) {
-    //       console.log('Element is fully visible in screen');
-    //       const id = element.id;
-    //       if (id && id !== this.state.currentTitle) {
-    //         this.setState({
-    //           currentTitle: id,
-    //         });
-    //       }
-    //     }
-      
-    //     // checking for partial visibility
-    //     if(position.top < window.innerHeight && position.bottom >= 0) {
-    //       console.log('Element is partially visible in screen');
-    //     }
-    //   }
-    // });
-  }
-
-  componentWillUnmount() {
-    // document.removeEventListener('scroll', this.onScroll);
-  }
-
   render = () => {
     const {router} = this.props;
     return (
@@ -70,7 +30,7 @@ class ContainerMarkdown extends
         <Head>
           <title>{this.props.node.meta.title}</title>
           <meta name="description" content={this.props.node.meta.description} />
-          <meta name="keywords" content={this.props.node.meta.keywords} />
+          <meta name="keywords" content={`next-hat, next hat, next, hat, documentation, doc, next hat doc, next doc, hat doc, ${this.props.node.meta.keywords}`} />
           <meta property="og:url" content={`https://docs.next-hat.com` + router.asPath} />
           <meta property="og:type" content="article" />
           <meta property="og:title" content={this.props.node.meta.title} />
@@ -130,31 +90,30 @@ class ContainerMarkdown extends
                     });
                     return (
                       <SyntaxHighlighter
-                      customStyle={{
-                        backgroundColor: '#f5f8fa',
-                      }}
-                      renderer={() => <code>{html}</code>}
-                      children={String(children).replace(/\n$/, '')}
-                      language={match[1]}
-                      PreTag="pre"
-                      style={vs}
-                    />
-                      // <code className={className} {...props}>
-                      //   <pre>
-                      //     {html}
-                      //   </pre>
-                      // </code>
+                        customStyle={{
+                          backgroundColor: '#1B1B1D',
+                          border: '1px solid black',
+                          borderRadius: 4,
+                        }}
+                        renderer={() => <code>{html}</code>}
+                        children={String(children).replace(/\n$/, '')}
+                        language={match[1]}
+                        PreTag="pre"
+                        style={atomDark}
+                      />
                     )
                   }
                   return !inline && match ? (
                     <SyntaxHighlighter
                       customStyle={{
-                        backgroundColor: '#f5f8fa',
+                        backgroundColor: '#1B1B1D',
+                        border: '1px solid black',
+                        borderRadius: 4,
                       }}
                       children={String(children).replace(/\n$/, '')}
                       language={match[1]}
                       PreTag="pre"
-                      style={vs}
+                      style={atomDark}
                     />
                   ) : (
                     <code className={className} {...props}>
@@ -195,7 +154,6 @@ class ContainerMarkdown extends
                   <Style.MenuRightLink
                     key={title.id}
                     href={`${router.asPath}#${title.id}`}
-                    selected={title.id === this.state.currentTitle}
                   >
                     {title.name}
                   </Style.MenuRightLink>

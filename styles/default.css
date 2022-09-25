@@ -6,6 +6,7 @@ html {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: black;
 }
 
 body {
@@ -16,6 +17,7 @@ body {
   width: 100%;
   height: 100%;
   padding: 0;
+  background-color: black;
 }
 
 #__next {
@@ -31,14 +33,22 @@ body {
     Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-code {
+code > span {
+  font-family: "Consolas" !important;
   font-size: 12px !important;
-  font-family: "Consolas", sans-serif;
+}
+
+code {
+  font-family: "Consolas" !important;
+  font-size: 12px !important;
 }
 
 code > strong {
   font-size: 12px !important;
-  font-family: "Consolas", sans-serif;
+}
+
+pre {
+  margin: 0px;
 }
 
 p {
@@ -46,7 +56,7 @@ p {
   clear: both;
   font-size: 14px;
   font-family: "Open Sans",sans-serif;
-  color: #0f161e;
+  color: white;
 }
 
 a {
@@ -67,12 +77,11 @@ th, td {
 }
 
 tr {
-  color: #0f161e;
   font-size: 14px;
 }
 
 tr:nth-child(even) {
-  background-color: #f7f7f7;
+  background-color: #1B1B1D;
 }
 
 th {
@@ -108,7 +117,7 @@ aside {
 }
 
 pre.highlight {
-  background-color: #f5f8fa
+  background-color: #1B1B1D;
 }
 
 h5 {
@@ -120,7 +129,7 @@ blockquote {
   font-style: italic;
   padding: 0px 20px;
   margin: 0 0 20px;
-  border-left: 5px solid #000000;
+  border-left: 5px solid white;
 }
 
 blockquote.tags {
@@ -138,16 +147,15 @@ blockquote.tags > span {
 }
 
 blockquote.info {
-  border-left: 5px solid #116ED0;
+  border-left: 5px solid #ff9800;
 }
 
 blockquote.info > :first-child {
-  color: #116ED0;
+  color: #ff9800;
   font-weight: 600;
 }
 
 blockquote.info > p {
-  color: #116ED0;
 }
 
 blockquote.info > :first-child::before {
@@ -156,15 +164,14 @@ blockquote.info > :first-child::before {
 }
 
 code.plaintext {
-  background-color: #f5f8fa !important;
-  color: #0c5176 !important;
+  color: #ff9800 !important;
   padding: 2px 4px;
 }
 
 .MuiTreeItem-label {
   font-family: "Open Sans",sans-serif !important;
   font-size: 12px !important;
-  color: rgba(255, 165, 0, 0.8);
+  color: #ff9800;
   font-weight: 400 !important;
   padding: 10px 0px;
 }
@@ -190,7 +197,7 @@ code.plaintext {
 }
 
 a {
-  color: rgba(255, 165, 0, 0.6);
+  color: #ff9800;
 }
 
 a:hover {

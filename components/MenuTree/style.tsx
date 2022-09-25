@@ -11,5 +11,5 @@ export const ContainerMenuTree = Styled.div`
   box-shadow: 0 3px 6px rgb(11 33 74 / 9%), 0 -2px 2px rgb(11 33 74 / 3%);
   position: fixed;
   width: 242px;
-  background-color: #f7f7f8;
+  background-color: #1B1B1D;
 `;

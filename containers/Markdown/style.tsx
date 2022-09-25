@@ -4,6 +4,7 @@ export const MainContainer = Styled.div`
   display: flex;
   flex: 1;
   flex-direction: row;
+  color: white;
 `;
 
 export const MenuContainer = Styled.div`
@@ -49,22 +50,16 @@ export const MenuRightFixed = Styled.div`
 export const MenuRightLine = Styled.div`
 `;
 
-export const MenuRightLink = Styled.a<{
-  selected?: boolean,
-}>`
+export const MenuRightLink = Styled.a`
   margin: 0px;
   padding: 8px 8px;
   font-size: 12px;
-
   border-left: 4px solid rgba(0, 0, 0, 0);
-  ${(props) => props.selected ? `
-    border-color: orange;
-    font-weight: bold;
-` : ``}
 `;
 
 export const Icon = Styled.i`
   padding-right: 4px;
+  color: #ff9800;
 `;
 
 export const MenuRightPageTitle = Styled.p`

@@ -45,10 +45,10 @@ const MenuTree = (props: PropsMenuTree) => {
           defaultSelected={router.asPath}
           defaultExpanded={expanded}
           defaultExpandIcon={<i style={{
-            color: 'orange',
+            color: '#ff9800',
           }} className="fas fa-chevron-right"></i>}
           defaultCollapseIcon={<i style={{
-            color: 'orange',
+            color: '#ff9800',
           }} className="fas fa-chevron-down"></i>}
           // defaultExpandIcon={<ChevronRightIcon />}
           sx={{ height: '100%', flexGrow: 1, maxWidth: 242, overflowY: 'auto', marginRight: 0 }}
