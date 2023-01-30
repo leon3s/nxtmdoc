@@ -33,7 +33,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/base": "^5.0.0-alpha.98",
-    "@mui/lab": "^5.0.0-alpha.100",
+    "@mui/lab": "^5.0.0-alpha.117",
     "@mui/material": "^5.10.6",
     "express": "^4.18.1",
     "next": "^12.3.1",
